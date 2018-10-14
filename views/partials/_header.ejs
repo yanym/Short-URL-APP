@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>url shortner</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <style>
+  .jumbotron {
+    padding: 20px 20px;
+  }
+
+  .alert {
+    margin-top: -30px;
+  }
+
+  .container{
+    text-align: center;
+    float: none;
+  }
+  </style>
+</head>
+
+<body>
+
+<div class="jumbotron">
+  <div class='container'>
+    <h1 class="display-3" >URL shortner</h1>
+    <p class="lead">Tech stack: EJS, Express.js, Bootstrap, Moment.js, Node.js</p>
+
+    <% if (!user_id) { %>
+      <a href="/register" role="button" class="btn btn-primary btn-lg form-inline">Register</a>
+      <a href="/login" role="button" class="btn btn-primary btn-lg">Login</a>
+    <% } %>
+
+    <% if (user_id) { %>
+      <form method="POST" action="/users/logout" class="form-inline">
+        <a href="/urls" class="btn btn-primary btn-lg" role="button">
+          My URLs
+        </a>
+        <a href="/urls/new" class="btn btn-primary btn-lg form-inline" role="button">
+          Add new
+        </a>
+        <button type="submit" class="btn btn-primary btn-lg form-inline" value="Logout">
+          Logout
+        </button>
+      </form>
+      Sign in as <%=users[user_id].email%>
+    <% } %>
+  </div>
+</div>
+
+<% if (messages) { %>
+  <% for (key in messages) { %>
+    <div class="alert alert-<%= [key] %>">
+      <span><%= messages[key] %></span>
+    </div>
+  <% } %>
+<% } %>

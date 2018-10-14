@@ -1,0 +1,43 @@
+<%- include('partials/_header') %>
+
+    <div class="container">
+      <% if (user_id) { %>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>URL</th>
+            <th>Short Code</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for (key in urls) { %>
+            <tr>
+              <td>
+                <%= urls[key]["url"] %>
+              </td>
+              <td>
+                <a href="/u/<%= [key] %>" target="_blank"><%= [key] %></a>
+              </td>
+              <td>
+                <a href="/urls/<%= [key] %>">
+                <button type="submit" class="btn btn-primary">Edit</button></a>
+              </td>
+              <td>
+                <form method="POST" action="/urls/<%= [key] %>?_method=DELETE">
+                  <input type="submit" class="btn btn-danger" value="Delete" />
+                </form>
+              </td>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+      <% } %>
+
+      <% if (!user_id) { %>
+        Register or login above to get started!
+      <% } %>
+    </div>
+  </body>
+</html>
