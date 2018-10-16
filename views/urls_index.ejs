@@ -3,10 +3,10 @@
     <div class="container">
       <% if (user_id) { %>
       <table class="table">
-        <thead>
+        <thead align="center">
           <tr>
-            <th>URL</th>
-            <th>Short Code</th>
+            <th>Original URL</th>
+            <th>Short URL</th>
             <th></th>
             <th></th>
           </tr>
@@ -22,7 +22,7 @@
               </td>
               <td>
                 <a href="/urls/<%= [key] %>">
-                <button type="submit" class="btn btn-primary">Edit</button></a>
+                <button type="submit" class="btn btn-primary">Update & Stats</button></a>
               </td>
               <td>
                 <form method="POST" action="/urls/<%= [key] %>?_method=DELETE">

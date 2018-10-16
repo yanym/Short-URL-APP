@@ -5,7 +5,7 @@ const urlRoutes    = express.Router();
 
 const methodOverride = require('method-override')
 const moment = require('moment');
-const randomizer    = require("../lib/randomizer");
+const shortUrlFunc    = require("../lib/shortURL");
 const protocolChecker = require("../lib/protocolChecker");
 
 module.exports = function(users, urlDatabase) {
@@ -17,7 +17,9 @@ module.exports = function(users, urlDatabase) {
       res.redirect("/urls/new")
     } else {
       let user_id = req.session.user_id;
-      let shortURL = randomizer();
+
+      let shortURL = shortUrlFunc(req.body.longURL);
+
       let dateCreated = moment().format("DD MMM YYYY");
       urlDatabase[user_id][shortURL] = {
         url: protocolChecker(req.body.longURL),
