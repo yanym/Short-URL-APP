@@ -12,5 +12,10 @@ A full-stack web app built with Node and Express to shorten long URLs.
 - moment
 
 ## Getting Started
-TB
+npm install 
+npm start
+run in port 3033
 
+## database is connected currently. 
+That is, if shows error "email undefined", please clean this website cookie. 
+Or a good way is to use Chrome incognito windows to visit the webside. (No cookie stored)
