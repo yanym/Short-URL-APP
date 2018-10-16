@@ -11,12 +11,13 @@ module.exports = function(users, urlDatabase) {
     let { email, password } = req.body;
     // Conditional checks for email
     if (email.length <= 5) {
-      req.flash('danger', "Please provide a valid email.");
+      req.flash('danger', "Check your email address");
       res.redirect("/register")
     };
+    // Check if email is reged
     for (key in users) {
       if (users[key].email === email) {
-        req.flash('warning', "This email is already associated with an account in our system. Please register with a different one.");
+        req.flash('warning', "Email has been used!");
         res.redirect("/register")
       };
     };
@@ -30,7 +31,7 @@ module.exports = function(users, urlDatabase) {
     req.session.user_id = user_id;
     users[user_id] = {id: user_id, email: email, password: bcrypt.hashSync(password, 10) };
     urlDatabase[user_id] = {};
-    req.flash('success', "Your account has been successfully created. Add a new URL above to get started!");
+    req.flash('success', "Sign up success!");
     res.redirect("/urls");
   });
 
